@@ -1,0 +1,69 @@
+import React from 'react';
+import { Link, Route } from 'react-router-dom';
+import Product from './Product';
+
+
+const Products = ({ match }) => {
+
+    const productsData = [
+        {
+          id: 1,
+          name: 'name2',
+          description: '//////////.',
+          status: 'Available'
+        
+        },
+        {
+          id: 2,
+          name: 'name1',
+          description: '///////////////////.',
+          status: 'not in  Stock'
+        
+        },
+        {
+          id: 3,
+          name: 'name3',
+          description: '///////.',
+          status: 'Available'
+        },
+        {
+          id: 4,
+          name: 'name4',
+          description: '//////////.',
+          status: 'not in  Stock'
+        },
+        
+        ];
+  
+   var linkList = productsData.map( (product) => {
+     return(
+       <li>
+         <Link to={`${match.url}/${product.id}`}>
+           {product.name}
+         </Link>
+       </li>
+       )
+ 
+     })
+ 
+   return(
+     <div>
+         <div>
+          <div>
+            <h3> Products</h3>
+            <ul> {linkList} </ul>
+          </div>
+         </div>
+ 
+         <Route path={`${match.url}/:productId`}
+             render={ (props) => <Product data= {productsData} {...props} />}/>
+         <Route exact path={match.url}
+             render={() => (
+             <div> select a product.</div>
+             )}
+         />
+     </div>
+   )
+ }
+
+ export default Products;
