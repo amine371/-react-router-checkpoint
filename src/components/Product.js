@@ -22,4 +22,4 @@ const Product = ({match,data}) => {
     )    
   }
 
-export default 
+export default Product
